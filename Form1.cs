@@ -26,8 +26,6 @@ namespace OOPLaba3._1
             this.KeyDown += MainForm_KeyDown;
             this.KeyUp += MainForm_KeyUp;
 
-            // Обработка нажатия клавиши Delete
-            this.KeyPress += MainForm_KeyPress;
         }
 
         // Обработка нажатия мыши
@@ -72,18 +70,15 @@ namespace OOPLaba3._1
             }
         }
 
-        private void MainForm_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Delete)
-            {
-                storage.RemoveSelectedCircles();
-                this.Invalidate(); // Перерисовываем форму
-            }
-        }
-
         private void MainForm_KeyDown(object? sender, KeyEventArgs e)
         {
-            if (e.Control)
+            if (e.KeyCode == Keys.Delete) // Проверяем, была ли нажата клавиша Delete
+            {
+                storage.RemoveSelectedCircles(); // Удаляем все выделенные круги
+                this.Invalidate(); // Перерисовываем форму
+            }
+
+            if (e.Control) // Проверяем, нажата ли клавиша Ctrl
             {
                 isCtrlPressed = true;
             }
