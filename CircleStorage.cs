@@ -4,6 +4,7 @@ namespace OOPLaba3._1
 {
     public class CircleStorage
     {
+        // Поле для хранения коллекции кругов
         private List<CCircle> circles = new List<CCircle>();
 
         // Добавление нового круга

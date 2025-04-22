@@ -9,6 +9,7 @@ namespace OOPLaba3._1
         private int radius = 30; // Постоянный радиус
         private bool isSelected; // Состояние выделения
 
+        // Конструктор: Инициализирует новый круг с заданными координатами центра
         public CCircle(int x, int y)
         {
             this.x = x;

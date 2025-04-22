@@ -52,16 +52,26 @@ namespace OOPLaba3._1
                     }
                 }
 
-                if (!anySelected && !isCtrlPressed)
+                if (!anySelected)
                 {
-                    // Если клик не попал ни в один круг, создаем новый
-                    storage.AddCircle(new CCircle(e.X, e.Y));
+                    if (isCtrlPressed)
+                    {
+                        // Если Ctrl нажат, снимаем выделение со всех кругов
+                        foreach (var c in storage.GetCircles())
+                            c.SetSelected(false);
+                    }
+                    else
+                    {
+                        // Если Ctrl не нажат, создаем новый круг
+                        storage.AddCircle(new CCircle(e.X, e.Y));
+                    }
                 }
 
                 this.Invalidate(); // Перерисовываем форму
             }
         }
 
+        // Обработка события перерисовки формы
         private void MainForm_Paint(object? sender, PaintEventArgs e)
         {
             foreach (var circle in storage.GetCircles())
@@ -70,6 +80,7 @@ namespace OOPLaba3._1
             }
         }
 
+        // Обработка события нажатия клавиши
         private void MainForm_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete) // Проверяем, была ли нажата клавиша Delete
@@ -84,6 +95,7 @@ namespace OOPLaba3._1
             }
         }
 
+        // Обработка события отпускания клавиши
         private void MainForm_KeyUp(object? sender, KeyEventArgs e)
         {
             if (!e.Control)
